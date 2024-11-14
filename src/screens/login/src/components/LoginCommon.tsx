@@ -17,12 +17,15 @@ import { getThemeColor } from 'utils/getThemeColor';
 import { scales } from 'utils/scales';
 import Storages, { KeyStorage } from 'utils/storages';
 import { showCustomToast } from 'utils/toast';
+import { useNavigation } from '@react-navigation/native';
+import { goToRegister } from 'screens/register/src/utils';
 
 interface ILoginCommonProps {
     route: LoginScreenRouteProps;
 }
 
 const LoginCommon = (props: ILoginCommonProps) => {
+    const navigation = useNavigation();
     const { theme } = useTheme();
     const styles = myStyles(theme);
     const { route } = props;
@@ -35,6 +38,8 @@ const LoginCommon = (props: ILoginCommonProps) => {
         try {
             showLoading();
             const response = key === ELoginScreenTabKey.user ? await apiLogin(email, password) : await apiLoginTourGuide(email, password);
+            console.log(ELoginScreenTabKey.user);
+            
             hideLoading();
             if (response?.returnValue?.accessToken) {
                 GlobalVariables.tokenInfo = {
@@ -80,7 +85,10 @@ const LoginCommon = (props: ILoginCommonProps) => {
             <TouchableOpacity>
                 <Text style={styles.forgotPassword}>Quên mật khẩu?</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                // navigation.navigate("Register")
+                goToRegister()
+            }}>
                 <Text style={styles.register}>Đăng ký</Text>
             </TouchableOpacity>
         </View>

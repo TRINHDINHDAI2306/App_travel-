@@ -14,6 +14,7 @@ import Messenger from './messenger/MessengerScreen';
 import Register from './register/RegisterScreen';
 import TourDetail from './tourDetail/TourDetailScreen';
 import Voucher from './voucher/VoucherScreen';
+import ComfirmOTP from 'NewScreens/ComfirmOTP';
 
 export const Screen = {
     // TAB BOTTOM
@@ -34,4 +35,5 @@ export const Screen = {
     Payment,
     Deposit,
     Withdraw,
+    ComfirmOTP
 };

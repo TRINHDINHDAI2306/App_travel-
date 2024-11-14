@@ -17,6 +17,7 @@
     "@gorhom/bottom-sheet": "^4.4.5",
     "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-native-community/blur": "^4.3.0",
+    "@react-native-community/cli-plugin-metro": "^12.3.6",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/netinfo": "^9.3.7",
     "@react-native-firebase/app": "^17.5.0",

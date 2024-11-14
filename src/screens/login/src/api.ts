@@ -14,7 +14,7 @@ export const apiLoginTourGuide = async (email: string, password: string) => {
     const response = await axios.post(
         `${BASE_URL}/auth/login-tourguide`,
         { email, password },
-    );
+    );  
     return response.data;
 };
 

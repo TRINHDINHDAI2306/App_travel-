@@ -14,6 +14,8 @@ import StackNavigator from 'navigation/Navigation';
 import store, { persistor } from 'states';
 
 
+
+
 function App() {
   // PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
   // useEffect(() => {

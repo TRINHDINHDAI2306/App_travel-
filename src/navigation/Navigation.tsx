@@ -18,6 +18,7 @@ import MainScreen from 'screens/main';
 import { Screen } from 'screens/screens';
 
 import { getThemeColor } from 'utils/getThemeColor';
+import ComfirmOTP from 'NewScreens/ComfirmOTP';
 
 const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
@@ -44,6 +45,10 @@ const RootStack = () => {
       <Stack.Screen name="TourStatusDetail" component={Screen.TourStatusDetail} />
 
       <Stack.Screen name="Voucher" component={Screen.Voucher} />
+      <Stack.Screen name="Payment" component={Screen.Payment} />
+      <Stack.Screen name="Deposit" component={Screen.Deposit} />
+
+      <Stack.Screen name="ComfirmOTP" component={Screen.ComfirmOTP} />
 
     </Stack.Navigator>
   );

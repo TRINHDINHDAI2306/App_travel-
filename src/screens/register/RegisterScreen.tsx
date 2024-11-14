@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import SvgIcons from 'assets/svgs';
@@ -8,7 +8,7 @@ import SvgIcons from 'assets/svgs';
 import Button from 'components/Button/Button';
 import Header from 'components/Header';
 import Input from 'components/Input';
-
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'hooks/useTheme';
 
 import { goBack } from 'navigation/utils';
@@ -17,43 +17,42 @@ import { Fonts } from 'themes';
 
 import { getThemeColor } from 'utils/getThemeColor';
 import { scales } from 'utils/scales';
+import { BASE_URL } from 'configs/api';
 
 const RegisterScreen = () => {
+    const navigation = useNavigation();
     const { theme } = useTheme();
     const styles = myStyles(theme);
     const [securePassword, setSecurePassword] = useState<boolean>(true);
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [phone, setPhone] = useState<string>('');
+    const [username, setUsername] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
 
     const onRegister = async () => {
-        // TODO: re check when open logic
-        // try {
-        //     if (validateInputPassword()) {
-        //         return;
-        //     }
-        //     const response = await axios.post(`https://68f7-2a09-bac1-7aa0-50-00-245-e.ap.ngrok.io/api/accounts`, {
-        //         email,
-        //         phone,
-        //         password,
-        //     });
-        //     if (!response) {
-        //         showCustomToast('Error create account');
-        //         return;
-        //     }
-        //     // success
-        //     setEmail('');
-        //     setPassword('');
-        //     setConfirmPassword('');
-        //     setPhone('');
-        //     goToVerifyOTP(email);
-        // } catch (error) {
-        //     if (error?.message) {
-        //         showCustomToast(error.message);
-        //         return;
-        //     }
-        // }
+   
+        try {
+         
+            const response = await axios.post(`${BASE_URL}/auth/register`, {
+                email: email,
+                username:username,
+                password: password,
+                confirmPassword:confirmPassword
+            });
+            if (!response) {
+                Alert.alert('Error create account');
+                return;
+            }
+    
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+            setUsername('');
+            navigation.navigate('ComfirmOTP', { email })
+        } catch (error) {
+         
+            Alert.alert("dki false")
+        }
     };
 
     const renderHeader = () => (
@@ -76,12 +75,12 @@ const RegisterScreen = () => {
 
     const renderInputPhone = () => (
         <View style={styles.inputPasswordContainer}>
-            <Text style={styles.title}>Số điện thoại</Text>
+            <Text style={styles.title}>Tên người dùng</Text>
             <Input
-                value={phone}
-                onChangeText={setPhone}
+                value={username}
+                onChangeText={setUsername}
                 keyboardType="numeric"
-                placeholder="Vui lòng nhập số điện thoại"
+                placeholder="Vui lòng nhập username"
             />
         </View>
     );

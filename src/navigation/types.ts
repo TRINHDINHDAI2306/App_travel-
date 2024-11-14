@@ -16,4 +16,5 @@ export type RootNavigatorParamList = {
     Payment: undefined,
     Deposit: undefined,
     Withdraw: undefined,
+    ComfirmOTP: undefined,
 };

@@ -59,6 +59,7 @@ function TourDetailScreen(props: ITourDetailScreenProps) {
         if (bottomSheetOrderTourRef) {
             bottomSheetOrderTourRef.current?.open();
         }
+        
     };
 
     const dismissBottomSheet = () => {

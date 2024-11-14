@@ -12,10 +12,16 @@ import { getThemeColor } from 'utils/getThemeColor';
 import { scales } from 'utils/scales';
 
 import { Fonts, Sizes } from 'themes';
+import { goToPayment } from 'screens/payments/src/utils';
+import { goToTourDetail } from 'screens/tourDetail/src/utils';
+
+
 
 const HomePostSection = () => {
     const { theme } = useTheme();
     const styles = myStyles(theme);
+
+
 
     const renderHeader = useCallback(() => {
         return (
@@ -31,7 +37,9 @@ const HomePostSection = () => {
 
     const renderItem = useCallback(() => {
         return (
-            <TouchableOpacity activeOpacity={0.9} style={styles.itemContainer}>
+            <TouchableOpacity onPress={() => {
+                goToTourDetail()
+            }} activeOpacity={0.9} style={styles.itemContainer}>
                 <View style={styles.itemContentContainer}>
                     <View>
                         <Image source={Images.Mountain} style={styles.itemImages} />
@@ -62,7 +70,9 @@ const HomePostSection = () => {
                     </View>
                     <Text style={styles.textPrice}>7,690,000đ</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: scales(10) }}>
-                        <TouchableOpacity style={styles.shopContainer}>
+                        <TouchableOpacity onPress={() => {
+                            goToPayment()
+                        }} style={styles.shopContainer}>
                             <SvgIcons.IcShopOutline
                                 color={getThemeColor().white}
                                 width={scales(17)}
